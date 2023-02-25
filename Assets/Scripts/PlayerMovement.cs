@@ -23,7 +23,9 @@ public class PlayerMovement : MonoBehaviour
         _direction = new Vector3(_joystick.Horizontal, 0f, _joystick.Vertical);
         _controller.Move(_direction * _speed * Time.deltaTime);
 
-        if (Vector3.Angle(Vector3.forward, _direction) > 1f || Vector3.Angle(Vector3.forward, _direction) == 0)
+        float angleRotation = 1f;
+
+        if (Vector3.Angle(Vector3.forward, _direction) > angleRotation || Vector3.Angle(Vector3.forward, _direction) == 0)
         {
             Vector3 direct = Vector3.RotateTowards(transform.forward, _direction, _speed, 0f);
             transform.rotation = Quaternion.LookRotation(direct);
@@ -33,5 +35,12 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetBool("Walk", true);
         else
             _animator.SetBool("Walk", false);
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (_direction.x != 0)
+                transform.position = new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z); 
+        }
+
     }
 }
