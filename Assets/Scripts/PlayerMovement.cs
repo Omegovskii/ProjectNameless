@@ -18,10 +18,13 @@ public class PlayerMovement : MonoBehaviour
         _controller = GetComponent<CharacterController>();
     }
 
-    void Update()
+    private void Update()
     {
         _direction = new Vector3(_joystick.Horizontal, 0f, _joystick.Vertical);
         _controller.Move(_direction * _speed * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            UseFastTravel();
 
         float angleRotation = 1f;
 
@@ -35,12 +38,12 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetBool("Walk", true);
         else
             _animator.SetBool("Walk", false);
+    }
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            if (_direction.x != 0)
-                transform.position = new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z); 
-        }
+    private void UseFastTravel()
+    {
+        float travelRange = 8f;
 
+        _controller.Move(_direction * travelRange);
     }
 }
