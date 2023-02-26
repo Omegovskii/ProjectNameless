@@ -2,29 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(CharacterController))]
+[RequireComponent(typeof(Animator), typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Joystick _joystick;
     [SerializeField] private float _speed;
+    [SerializeField] private Joystick _joystick;
+    [SerializeField] private int _forceJump;
+    [SerializeField] private Transform _target;
 
-    private CharacterController _controller;
     private Animator _animator;
+    private Rigidbody _rigidbody;
     private Vector3 _direction;
+    private Coroutine _activeCoroutine;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        _controller = GetComponent<CharacterController>();
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         _direction = new Vector3(_joystick.Horizontal, 0f, _joystick.Vertical);
-        _controller.Move(_direction * _speed * Time.deltaTime);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            UseFastTravel();
+        _rigidbody.velocity =Vector3.ClampMagnitude(_direction, 1f) * _speed;       
 
         float angleRotation = 1f;
 
@@ -40,10 +40,32 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetBool("Walk", false);
     }
 
-    private void UseFastTravel()
+    private void Update()
     {
-        float travelRange = 8f;
+        if (Input.GetKeyDown(KeyCode.Space))
+            UseAbiliti();
+    }
 
-        _controller.Move(_direction * travelRange);
+    private void UseAbiliti()
+    {
+        StartCoroutine(TakeJump());
+    }
+
+    private IEnumerator TakeJump()
+    {
+        Vector3 target = _target.position;
+
+        _animator.SetBool("Attack",true);
+
+        while (transform.position.x != target.x && transform.position.z != target.z)
+        {
+            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x,transform.position.y,transform.position.z), 
+                                                       new Vector3(target.x, transform.position.y, target.z),15 * Time.deltaTime);
+            yield return null;
+        }
+
+        _animator.SetBool("Attack", false);
+
+        yield return null;
     }
 }
