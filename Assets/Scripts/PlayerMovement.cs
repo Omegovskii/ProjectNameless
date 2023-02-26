@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Joystick _joystick;
     [SerializeField] private int _forceJump;
     [SerializeField] private Transform _target;
+    [SerializeField] private float _forceAbiliti = 15f;
 
     private Animator _animator;
     private Rigidbody _rigidbody;
@@ -60,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         while (transform.position.x != target.x && transform.position.z != target.z)
         {
             transform.position = Vector3.MoveTowards(new Vector3(transform.position.x,transform.position.y,transform.position.z), 
-                                                       new Vector3(target.x, transform.position.y, target.z),15 * Time.deltaTime);
+                                                       new Vector3(target.x, transform.position.y, target.z), _forceAbiliti * Time.deltaTime);
             yield return null;
         }
 
