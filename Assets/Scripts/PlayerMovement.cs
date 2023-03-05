@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody))]
@@ -10,11 +9,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int _forceJump;
     [SerializeField] private Transform _target;
     [SerializeField] private float _forceAbiliti = 15f;
+    [SerializeField] private GameObject _sword;
 
     private Animator _animator;
     private Rigidbody _rigidbody;
     private Vector3 _direction;
     private Coroutine _activeCoroutine;
+
+    public Vector3 Direction => _direction;
 
     private void Start()
     {
@@ -56,11 +58,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 target = _target.position;
 
-        _animator.SetBool("Attack",true);
+        _animator.SetBool("Attack", true);
 
         while (transform.position.x != target.x && transform.position.z != target.z)
         {
-            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x,transform.position.y,transform.position.z), 
+            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z),
                                                        new Vector3(target.x, transform.position.y, target.z), _forceAbiliti * Time.deltaTime);
             yield return null;
         }
