@@ -9,14 +9,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int _forceJump;
     [SerializeField] private Transform _target;
     [SerializeField] private float _forceAbiliti = 15f;
-    [SerializeField] private GameObject _sword;
+    [SerializeField] private Sword _sword;
+    [SerializeField] private Sword _prefabSword;
 
     private Animator _animator;
     private Rigidbody _rigidbody;
     private Vector3 _direction;
     private Coroutine _activeCoroutine;
+    private Vector3 _locationSword;
 
     public Vector3 Direction => _direction;
+    public Quaternion Rotation;
 
     private void Start()
     {
@@ -35,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 direct = Vector3.RotateTowards(transform.forward, _direction, _speed, 0f);
             transform.rotation = Quaternion.LookRotation(direct);
+            Rotation = Quaternion.LookRotation(direct);
         }
 
         if (_direction.x != 0 || _direction.z != 0)
@@ -45,8 +49,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            UseAbiliti();
+        if(Input.GetKeyDown(KeyCode.Space))
+            _animator.SetBool("Attack", true);
+        if (Input.GetKeyDown(KeyCode.N))
+            _animator.SetBool("Attack", false);
+
     }
 
     private void UseAbiliti()
@@ -71,4 +78,5 @@ public class PlayerMovement : MonoBehaviour
 
         yield return null;
     }
+
 }
