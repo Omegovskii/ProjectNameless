@@ -5,33 +5,36 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private ThrowingSword _throwingSword;
-    [SerializeField] private Sword _sword;
-    [SerializeField] private PlayerMovement _movement;
+    [SerializeField] private Transform _sword;
+    [SerializeField] private PlayerMovement _player;
 
-    private Vector3 _location;
+    private Animator _animator;
+    private Vector3 _position;
     private Quaternion _rotation;
+
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-            UseAbiliti();
-    }
+        {
+            _animator.SetBool("Attack", true);
+        }
 
-    private void UseAbiliti()
-    {
-        Debug.Log("Хрен там! Не спавнится");
-        _throwingSword.transform.position = _location;
-        _throwingSword.transform.rotation = _rotation;
-        Instantiate(_throwingSword, _location, _rotation);
-        _throwingSword.UseAbiliti();
+        if (Input.GetKeyDown(KeyCode.N))
+            _animator.SetBool("Attack", false);
     }
 
     private void GetTransform()
     {
-        _location = _sword.transform.position;
-        _rotation = _sword.transform.rotation;
-        Debug.Log("Координаты получены "+ _location.x +" "+ _location.y +" "+ _location.z +" ");
-        Debug.Log("Координаты получены " + _rotation.x + " " + _rotation.y + " " + _rotation.z + " ");
+        _position = _sword.position;
+        _rotation = _sword.rotation;
+        ThrowingSword sword = Instantiate(_throwingSword, _position, _rotation);
+        
+  
     }
 
 

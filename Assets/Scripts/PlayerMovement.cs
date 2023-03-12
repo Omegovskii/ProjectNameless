@@ -6,17 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Joystick _joystick;
-    [SerializeField] private int _forceJump;
-    [SerializeField] private Transform _target;
-    [SerializeField] private float _forceAbiliti = 15f;
-    [SerializeField] private Sword _sword;
-    [SerializeField] private Sword _prefabSword;
 
     private Animator _animator;
     private Rigidbody _rigidbody;
     private Vector3 _direction;
-    private Coroutine _activeCoroutine;
-    private Vector3 _locationSword;
 
     public Vector3 Direction => _direction;
     public Quaternion Rotation;
@@ -46,37 +39,4 @@ public class PlayerMovement : MonoBehaviour
         else
             _animator.SetBool("Walk", false);
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-            _animator.SetBool("Attack", true);
-        if (Input.GetKeyDown(KeyCode.N))
-            _animator.SetBool("Attack", false);
-
-    }
-
-    private void UseAbiliti()
-    {
-        StartCoroutine(TakeJump());
-    }
-
-    private IEnumerator TakeJump()
-    {
-        Vector3 target = _target.position;
-
-        _animator.SetBool("Attack", true);
-
-        while (transform.position.x != target.x && transform.position.z != target.z)
-        {
-            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z),
-                                                       new Vector3(target.x, transform.position.y, target.z), _forceAbiliti * Time.deltaTime);
-            yield return null;
-        }
-
-        _animator.SetBool("Attack", false);
-
-        yield return null;
-    }
-
 }
