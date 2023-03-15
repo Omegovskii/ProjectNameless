@@ -7,11 +7,15 @@ public class ThrowingSword : MonoBehaviour
 {
     [SerializeField] private PlayerMovement _player;
     [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private Joystick _joystick;
     [SerializeField] private Transform _target;
+
+    private Vector3 _direction;
 
     private void Start()
     {
-        UseAbiliti();
+        _direction = new Vector3(transform.position.x - 20, 0, 0);
+        _rigidbody.velocity = _direction;
     }
 
     private void Update()
@@ -21,22 +25,6 @@ public class ThrowingSword : MonoBehaviour
 
     public void UseAbiliti()
     {
-        _rigidbody.AddForce(_target.transform.forward * 1000f);
-
-        //StartCoroutine(GoTo());
-    }
-
-    private IEnumerator GoTo()
-    {
-        int i = 0;
-        Debug.Log(i);
-
-        while (i++ < 100)
-        {
-            Vector3.MoveTowards(transform.position, _target.position, 0.1f);
-            yield return null;
-        }
-
-        yield return null;
+        
     }
 }

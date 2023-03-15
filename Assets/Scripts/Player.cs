@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     private Vector3 _position;
     private Quaternion _rotation;
 
+    public Vector3 Position => _position;
+    public Quaternion Rotation => _rotation;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -33,8 +36,7 @@ public class Player : MonoBehaviour
         _position = _sword.position;
         _rotation = _sword.rotation;
         ThrowingSword sword = Instantiate(_throwingSword, _position, _rotation);
-        
-  
+        sword.UseAbiliti();
     }
 
 

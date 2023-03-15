@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 Direction => _direction;
     public Quaternion Rotation;
+    public float Speed => _speed;
 
     private void Start()
     {

@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 328485580354867311, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
   _rigidbody: {fileID: -2002347012451885143}
+  _joystick: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
   _target: {fileID: 493164287652365574}
 --- !u!54 &-2002347012451885143
 Rigidbody:
@@ -116,7 +117,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1342849819901142479
 BoxCollider:
