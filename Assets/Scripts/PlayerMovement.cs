@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -12,11 +13,15 @@ public class PlayerMovement : MonoBehaviour
     private Animator _animator;
     private Rigidbody _rigidbody;
     private Vector3 _direction;
+    ThrowingSword throwingSword;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
+
+        throwingSword = Instantiate(_throwingSword, _sword.position, _sword.rotation);
+        throwingSword.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -36,31 +41,33 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetBool("Walk", true);
         else
             _animator.SetBool("Walk", false);
-
-
     }
 
     private void GetTransform()
     {
-        ThrowingSword throwingSword = Instantiate(_throwingSword, _sword.position, _sword.rotation);
+        //ThrowingSword throwingSword = Instantiate(_throwingSword, _sword.position, _sword.rotation);
+        throwingSword.transform.position = _sword.position;
+        throwingSword.transform.rotation = _sword.rotation;
+        throwingSword.gameObject.SetActive(true);
         throwingSword.GetDirection(_direction);
+        throwingSword.Moved += OnMoved;
     }
 
     private void OnMoved(Vector3 position)
     {
-        transform.position = position;
-        Debug.Log("Должен был переместиться");
+        Debug.Log("Должен был переместиться on Moved");
+        gameObject.transform.position = position;
+        
     }
 
     private void OnEnable()
     {
-        _throwingSword.Moved += OnMoved;
-        Debug.Log("Должен был переместиться");
+        Debug.Log("Должен был переместиться on Eneble");
     }
 
     private void OnDisable()
     {
-        _throwingSword.Moved -= OnMoved;
+        throwingSword.Moved -= OnMoved;
         Debug.Log("Должен был переместиться - отписался");
     }
 }

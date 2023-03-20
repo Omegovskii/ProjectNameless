@@ -24,8 +24,8 @@ public class ThrowingSword : MonoBehaviour
 
         if (_timeElapsed > 0.3f)
         {
-            _rigidbody.velocity = Vector3.zero;
             Moved?.Invoke(transform.position);
+            _rigidbody.velocity = Vector3.zero;            
         }
     }
     
