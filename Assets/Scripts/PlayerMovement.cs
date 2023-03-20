@@ -52,18 +52,15 @@ public class PlayerMovement : MonoBehaviour
 
         _throwingSword.gameObject.SetActive(true);
         _throwingSword.GetDirection(_direction);
+        _sword.gameObject.SetActive(false);
         _throwingSword.UseAbiliti();
     }
 
     private void OnMoved(Vector3 position)
     {
         _throwingSword.gameObject.SetActive(false);
-        gameObject.transform.position = position;     
+        gameObject.transform.position = position;
+        _sword.gameObject.SetActive(true);
         _throwingSword.Moved -= OnMoved;
-    }
-
-    private void OnDisable()
-    {
-        
     }
 }
