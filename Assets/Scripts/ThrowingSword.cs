@@ -32,7 +32,8 @@ public class ThrowingSword : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other);
+        if (other.gameObject.TryGetComponent<Enemy>(out Enemy emeny))
+            Destroy(other.gameObject);
     }
 
     public void GetDirection(Vector3 direction)
