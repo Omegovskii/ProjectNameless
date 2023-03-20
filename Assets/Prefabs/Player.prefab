@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1136298356121488098}
+  - component: {fileID: 523887891642643764}
   m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
@@ -24,13 +25,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136298356121488099}
   m_LocalRotation: {x: 0, y: -0, z: -5.8207654e-11, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 10}
+  m_LocalPosition: {x: -1.08, y: 0.57, z: 7.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4777342348089389587}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &523887891642643764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136298356121488099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 195937007f14eeb479405ff300d31d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4777342348089355809
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,8 +431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607fd0dffd597514c9ff0e7103857e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _throwingSword: {fileID: 2070595629381725457, guid: 653e9a13ceef260468f31c7bd8795904, type: 3}
-  _sword: {fileID: 3581698647841678301}
 --- !u!114 &328485580354867311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,7 +445,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _joystick: {fileID: 0}
-  Rotation: {x: 0, y: 0, z: 0, w: 0}
+  _sword: {fileID: 3581698647841678301}
+  _throwingSword: {fileID: 2070595629381725457, guid: 653e9a13ceef260468f31c7bd8795904, type: 3}
 --- !u!1 &4777342348089355829
 GameObject:
   m_ObjectHideFlags: 0

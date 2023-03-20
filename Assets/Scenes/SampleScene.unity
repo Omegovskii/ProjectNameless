@@ -1865,22 +1865,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 328485580354867310, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 328485580354867310, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 328485580354867311, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 1683844529}
-    - target: {fileID: 1258108460552267647, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 5099064789027683204}
     - target: {fileID: 4777342348089355827, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1891,7 +1879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4777342348089389587, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.25
+      value: 6.51
       objectReference: {fileID: 0}
     - target: {fileID: 4777342348089389587, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1899,7 +1887,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4777342348089389587, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.81
+      value: -2.73
       objectReference: {fileID: 0}
     - target: {fileID: 4777342348089389587, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1936,14 +1924,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4777342348089389587, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
   m_PrefabInstance: {fileID: 328485579920378256}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5099064789027683204 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 328485580354867311, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
-  m_PrefabInstance: {fileID: 328485579920378256}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1768de0e75ffb0240ad4a74590243090, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
