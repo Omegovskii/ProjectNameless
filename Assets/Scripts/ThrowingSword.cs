@@ -29,7 +29,12 @@ public class ThrowingSword : MonoBehaviour
             _timeElapsed = 0f;
         }
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(other);
+    }
+
     public void GetDirection(Vector3 direction)
     {
         _direction = direction;
