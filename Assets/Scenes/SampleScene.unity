@@ -1869,6 +1869,10 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 1683844529}
+    - target: {fileID: 328485580354867311, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
+      propertyPath: _prefabThrowingSword
+      value: 
+      objectReference: {fileID: 2070595629381725457, guid: 653e9a13ceef260468f31c7bd8795904, type: 3}
     - target: {fileID: 4777342348089355827, guid: 9922ca898402a35408dd181a6d486fa6, type: 3}
       propertyPath: m_Name
       value: Player

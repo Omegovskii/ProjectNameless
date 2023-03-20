@@ -15,7 +15,7 @@ public class ThrowingSword : MonoBehaviour
 
     private void Start()
     {
-        _rigidbody.velocity = _direction * 25;
+
     }
 
     private void Update()
@@ -25,7 +25,8 @@ public class ThrowingSword : MonoBehaviour
         if (_timeElapsed > 0.3f)
         {
             Moved?.Invoke(transform.position);
-            _rigidbody.velocity = Vector3.zero;            
+            _rigidbody.velocity = Vector3.zero;
+            _timeElapsed = 0f;
         }
     }
     
@@ -34,10 +35,8 @@ public class ThrowingSword : MonoBehaviour
         _direction = direction;
     }
 
-    public Vector3 SentPosition(Vector3 position)
+    public void UseAbiliti()
     {
-        return position;
+        _rigidbody.velocity = _direction * 25;
     }
-
-
 }

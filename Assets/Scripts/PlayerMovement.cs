@@ -8,20 +8,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private Joystick _joystick;
     [SerializeField] private Transform _sword;
-    [SerializeField] private ThrowingSword _throwingSword;
+    [SerializeField] private ThrowingSword _prefabThrowingSword;
 
     private Animator _animator;
     private Rigidbody _rigidbody;
     private Vector3 _direction;
-    ThrowingSword throwingSword;
+    private ThrowingSword _throwingSword;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
 
-        throwingSword = Instantiate(_throwingSword, _sword.position, _sword.rotation);
-        throwingSword.gameObject.SetActive(false);
+        _throwingSword = Instantiate(_prefabThrowingSword, _sword.position, _sword.rotation);
+        _throwingSword.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -43,31 +43,27 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetBool("Walk", false);
     }
 
-    private void GetTransform()
+    private void UseThrowingSword()
     {
-        //ThrowingSword throwingSword = Instantiate(_throwingSword, _sword.position, _sword.rotation);
-        throwingSword.transform.position = _sword.position;
-        throwingSword.transform.rotation = _sword.rotation;
-        throwingSword.gameObject.SetActive(true);
-        throwingSword.GetDirection(_direction);
-        throwingSword.Moved += OnMoved;
+        _throwingSword.Moved += OnMoved;
+
+        _throwingSword.transform.position = _sword.position;
+        _throwingSword.transform.rotation = _sword.rotation;
+
+        _throwingSword.gameObject.SetActive(true);
+        _throwingSword.GetDirection(_direction);
+        _throwingSword.UseAbiliti();
     }
 
     private void OnMoved(Vector3 position)
     {
-        Debug.Log("Должен был переместиться on Moved");
-        gameObject.transform.position = position;
-        
-    }
-
-    private void OnEnable()
-    {
-        Debug.Log("Должен был переместиться on Eneble");
+        _throwingSword.gameObject.SetActive(false);
+        gameObject.transform.position = position;     
+        _throwingSword.Moved -= OnMoved;
     }
 
     private void OnDisable()
     {
-        throwingSword.Moved -= OnMoved;
-        Debug.Log("Должен был переместиться - отписался");
+        
     }
 }
